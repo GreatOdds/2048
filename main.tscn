@@ -1,0 +1,173 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgee0rso5kr6w"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_4rqou"]
+[ext_resource type="Theme" uid="uid://dro78lgioa5yb" path="res://resources/themes/main_theme.tres" id="1_7mhvs"]
+[ext_resource type="Script" path="res://ui/ui_grid.gd" id="2_of13c"]
+[ext_resource type="StyleBox" uid="uid://bwpd1otniagld" path="res://resources/themes/scoreboard_style_box.tres" id="4_1rfal"]
+[ext_resource type="StyleBox" uid="uid://wiutu7lv2mh2" path="res://resources/themes/grid_panel.tres" id="4_ql7ki"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vug1b"]
+line_spacing = 0.0
+font_size = 80
+font_color = Color(0.466667, 0.431373, 0.396078, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_132vd"]
+font_size = 13
+
+[sub_resource type="LabelSettings" id="LabelSettings_mlsl3"]
+font_size = 25
+
+[node name="Main" type="PanelContainer" node_paths=PackedStringArray("ui_grid", "score_label", "best_score_label", "new_game_button", "new_game_confirmation_dialog", "over_confirmation_dialog", "won_confirmation_dialog")]
+custom_minimum_size = Vector2(490, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7mhvs")
+script = ExtResource("1_4rqou")
+ui_grid = NodePath("VBoxContainer/AspectRatioContainer/GridPanel/UIGrid")
+score_label = NodePath("VBoxContainer/Header/HBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/ScoreLabel")
+best_score_label = NodePath("VBoxContainer/Header/HBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer/BestScoreLabel")
+new_game_button = NodePath("VBoxContainer/Header/HBoxContainer2/NewGameButton")
+new_game_confirmation_dialog = NodePath("NewGameConfirmationDialog")
+over_confirmation_dialog = NodePath("OverConfirmationDialog")
+won_confirmation_dialog = NodePath("WonConfirmationDialog")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2048"
+label_settings = SubResource("LabelSettings_vug1b")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("4_1rfal")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score"
+label_settings = SubResource("LabelSettings_132vd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+label_settings = SubResource("LabelSettings_mlsl3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("4_1rfal")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Best"
+label_settings = SubResource("LabelSettings_132vd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BestScoreLabel" type="Label" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "0
+"
+label_settings = SubResource("LabelSettings_mlsl3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Header"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Header/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[font_size=18][color=776e65]Join the tiles, get to [b]2048[/b]![/color][/font_size]"
+fit_content = true
+scroll_active = false
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer/Header/HBoxContainer2"]
+layout_mode = 2
+text = "New Game"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+alignment_vertical = 0
+
+[node name="GridPanel" type="PanelContainer" parent="VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_ql7ki")
+
+[node name="UIGrid" type="Control" parent="VBoxContainer/AspectRatioContainer/GridPanel"]
+layout_mode = 2
+script = ExtResource("2_of13c")
+spacing = Vector2(0.015, 0.015)
+
+[node name="NewGameConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "Start New Game"
+initial_position = 2
+size = Vector2i(323, 100)
+unresizable = true
+popup_window = true
+ok_button_text = "Yes"
+dialog_text = "Do you wish to start a new game?"
+cancel_button_text = "No"
+
+[node name="OverConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "Game Over"
+initial_position = 2
+size = Vector2i(317, 100)
+unresizable = true
+popup_window = true
+ok_button_text = "Yes"
+dialog_text = "No Moves Left. Start a new game?"
+cancel_button_text = "No"
+
+[node name="WonConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "Game Over"
+initial_position = 2
+size = Vector2i(260, 100)
+unresizable = true
+popup_window = true
+ok_button_text = "Yes"
+dialog_text = "You won. Start a new game?"
+cancel_button_text = "No"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
