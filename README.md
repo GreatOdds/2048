@@ -16,3 +16,6 @@ Made to get some practice with Godot's Control nodes. (Also some Model and View 
 - Touchscreen controls
 - Settings screen (reset progress, animation speed/on/off, volume control)
 - Export/Import saves?
+
+# Screenshot
+![game](https://github.com/GreatOdds/2048/assets/47208466/d1b87876-f437-4b4f-af45-fe751d73d5dd)
